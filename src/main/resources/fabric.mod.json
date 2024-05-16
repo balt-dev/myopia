@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "myopia",
+  "version": "${version}",
+  "name": "Myopia",
+  "description": "Makes all textures use bilinear filtering.",
+  "authors": [
+    "baltdev"
+  ],
+  "contact": {
+    "repo": "https://github.com/baltdev/myopia"
+  },
+  "license": "MIT",
+  "icon": "assets/myopia/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "mba.sno.myopia.client.MyopiaClient"
+    ]
+  },
+  "mixins": [
+    "myopia.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": ">=1.18"
+  }
+}
