@@ -1,17 +1,18 @@
 package mba.sno.myopia.client.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
+import com.mojang.blaze3d.textures.FilterMode;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-@Mixin(targets = "com.mojang.blaze3d.platform.GlStateManager")
+@Mixin(targets = "com.mojang.blaze3d.textures.GpuTexture")
 public class BlurMixin {
-    @ModifyVariable(at = @At(value = "HEAD"), method = "_texParameter(III)V", ordinal = 2, argsOnly = true)
-    private static int filter(int value, @Local(ordinal = 1, argsOnly = true) int pname) {
-        if (pname == 10240 || pname == 10241) {
-            return 9729;
-        }
-        return value;
+    @ModifyVariable(at = @At(value = "HEAD"), method = "setTextureFilter(Lcom/mojang/blaze3d/textures/FilterMode;Lcom/mojang/blaze3d/textures/FilterMode;Z)V", ordinal = 0, argsOnly = true)
+    private static FilterMode setMin(FilterMode value) {
+        return FilterMode.LINEAR;
+    }
+    @ModifyVariable(at = @At(value = "HEAD"), method = "setTextureFilter(Lcom/mojang/blaze3d/textures/FilterMode;Lcom/mojang/blaze3d/textures/FilterMode;Z)V", ordinal = 1, argsOnly = true)
+    private static FilterMode setMag(FilterMode value) {
+        return FilterMode.LINEAR;
     }
 }

@@ -118,3 +118,8 @@ run/
 !gradle-wrapper.jar
 
 gradle/
+
+remappedSrc/*
+
+gradlew
+gradlew.bat
